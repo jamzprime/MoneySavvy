@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./css/cssFile.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+<link rel="stylesheet" href="css/header-basic-light.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Money Savvy</title>
+<style></style>
+
+<style>
+    .objects {
+        display:inline-block;
+        background-color: #51C1F2;
+        border: rgb(255, 255, 255) 1px solid;
+        width: 60px; 
+        height: 50px;
+        margin: 10px;
+        padding: 8px;
+        font-size: 12px;
+        text-align: center;
+        box-shadow: 2px 2px 2px #999;
+        cursor: move;
+        position: relative;
+    }
+    #need_zone {
+        display:inline-block;
+        background-color: #EEE; 
+        border: #999 1px solid;
+        width: 440px; 
+        height: 300px;
+        padding: 8px;
+        font-size: 18px;
+        position: absolute;
+    }
+    #want_zone {
+        
+        background-color: #EEE; 
+        border: #999 1px solid;
+        width: 440px; 
+        height: 300px;
+        padding: 8px;
+        font-size: 18px;
+    }
+    #formbox {
+        background-color: #EEE;
+        display: inline-block;
+        white-space: nowrap;
+        vertical-align: top;
+        border: #999 1px solid;
+        width: 300px;
+        height: 460px;
+        padding: 8px;
+        font-size: 14px;
+    }
+    #formbox1 {
+        background-color: #EEE;
+        display: inline-block;
+        vertical-align: top;
+        border: #999 1px solid;
+        width: 300px;
+        height: 460px;
+        padding: 8px;
+        font-size: 14px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    </style>
+    <script>
+    function _(id){
+       return document.getElementById(id);	
+    }
+    var droppedIn = false;
+    function drag_start(event) {
+        event.dataTransfer.dropEffect = "move";
+        event.dataTransfer.setData("text", event.target.getAttribute('id') );
+        
+    }
+   
+    function drag_drop(event) {
+        event.preventDefault(); /* Prevent undesirable default behavior while dropping */
+        var elem_id = event.dataTransfer.getData("text");
+        event.target.appendChild( _(elem_id) );
+        _(elem_id).style.backgroundColor =  '#51C1F2';
+        //_(elem_id).removeAttribute("draggable");
+        _(elem_id).style.cursor = "default";
+        droppedIn = true;
+    }
+    function readZones(){
+        for(var i=0; i < _("need_zone").children.length; i++){
+            if((_("need_zone").children[i].id.includes("need") == true)) {
+                _("need_zone").children[i].style.backgroundColor =  '#1EE37A';
+            }
+            else {
+                _("need_zone").children[i].style.backgroundColor = '#FA5246';
+            }
+        }
+        for(var i=0; i < _("want_zone").children.length; i++){
+            if((_("want_zone").children[i].id.includes("want") == true)) {
+                _("want_zone").children[i].style.backgroundColor = '#1EE37A';
+            }
+            else {
+                _("want_zone").children[i].style.backgroundColor = '#FA5246';
+            }
+        }
+    }
+    function myFunction() {
+        var x = document.getElementById("app");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    function myFunction1() {
+        var x = document.getElementById("app1");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+        function Calculate(){
+            var income = document.getElementById("income").value;    
+            var rent = document.getElementById("rent").value;    
+            var foodHome = document.getElementById("foodHome").value;    
+            var fastFood = document.getElementById("fastFood").value;    
+            var transport = document.getElementById("transport").value;    
+            var mobile = document.getElementById("mobile").value;    
+            var movie = document.getElementById("movie").value;    
+            var shopping = document.getElementById("shopping").value;  
+
+            var validate= false;
+  
+                var necExTotal = Number(rent) + Number(foodHome) + Number(transport);
+                var othExTotal = Number(fastFood) + Number(mobile) + Number(movie) + Number(shopping);
+                var totalSpending = othExTotal+necExTotal;
+                var unaccountedTotal = income-totalSpending;
+
+                var necPerc = ((necExTotal/income) * 100).toFixed(1);
+                var othPerc = ((othExTotal/income) * 100).toFixed(1);
+                var savePerc = ((unaccountedTotal/income) * 100).toFixed(1);
+
+                if (document.getElementById("income").value !=0 ) {
+                    document.getElementById("budget").innerHTML = "You have an income of $"+income+". Currently $"+necExTotal+" ("+necPerc+"%) of this is considered necessary, $"+othExTotal+" ("+othPerc+"%) unnecessary, and the remaining $"+unaccountedTotal+" ("+savePerc+"%) unaccounted for. If you are able to cut your non-essential spending by just 20% you would be able to save an extra $"+othExTotal*0.2+" every week! This money could be put towards saving for a trip or something you want to buy.";
+                } else {
+                    alert("Please input a number for each section of the form");
+                }
+            }
+        function ResetForm(){
+            document.getElementById("budgetFormID").reset();
+        }
+    </script>
+
+
+</head>
+
+<header class="header-basic-light">
+        <div class="header-limiter">
+            <h1><a href="#">Money<span>Savvy</span></a></h1>
+            <nav>
+                <a href="./index.html">Home</a>
+                <a href="./Creditcard.html">Credit Cards</a>
+                <a href="./Budgeting.html"class="selected">Budgeting</a>
+                <a href="./KiwiSaver.html">KiwiSaver</a>
+            </nav>
+        </div>
+    </header>
+    
+<div class="body">
+            <h2>Budgeting</h2>
+            <p>Money Savvy is a financial skills course that we deliver through schools and community groups when young people  are starting to think about their future; when  they might be getting their first job and before  they get into debt or skip reading the fine print  of a contract.  In 2016 the programme was presented on a Marae in Te Reo and we have also partnered with YWCA  Hamilton and Whangarei to successfully pilot  Money Savvy in their communities.</p>     
+            <button onclick="myFunction()" class="w3-btn w3-white w3-border w3-border-blue w3-round-large">Needs vs Wants Game</button>
+            <button onclick="myFunction1()" class="w3-btn w3-white w3-border w3-border-blue w3-round-large">Calculate a Budget</button>
+            
+            <div class="app" id="app" style="display: none;">
+                <h1 style="text-align:right;float:left;">Wants</h1>
+                <h1 style="text-align:left;float:right;">Needs</h1>
+                <hr style="clear:both;">
+                <div class="appcolumn">
+                    <div id="need_zone" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)"></div>
+                    <div id="want_zone" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)"></div>
+                   
+                </div>
+          
+                <div class="appcolumn1">
+                    <div id="need1" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Rent</div>
+                    <div id="need2" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Food</div>
+                    <div id="need3" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Fuel</div>
+                    <div id="need4" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Travel</div>
+                    <div id="want1" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Phone</div>
+                    <div id="want2" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Laptop</div>
+                    <div id="want3" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Netflix</div>
+                    <div id="want4" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">Spotify</div>
+                    <br>
+                    <a href="./Budgeting.html" button class="w3-btn w3-white w3-border w3-border-blue w3-round-large" onclick="myFunction()">Reset</a>
+                    <button onclick="readZones()" class="w3-btn w3-white w3-border w3-border-blue w3-round-large">Check Answers</button>
+                </div>
+            </div>
+
+        <div class="app1" id="app1" style="display: none;">
+            <h2>Create a Weeky Budget</h2>
+                <div id="formbox">
+                    <div class="budgetForm" form action="./action_page.php">
+                        <form id ="budgetFormID">
+                            Your Income:<br>$
+                            <input type="number" id="income" value="0"><br>
+                            Rent:<br>$
+                            <input type="number" id="rent" value="0"><br>
+                            Food (at home):<br>$
+                            <input type="number" id="foodHome" value="0"><br>
+                            Food (fast food etc):<br>$
+                            <input type="number" id="fastFood" value="0"><br>
+                            Transport:<br>$
+                            <input type="number" id="transport" value="0"><br>
+                            Mobile plan:<br>$
+                            <input type="number" id="mobile" value="0"><br>
+                            Movies:<br>$
+                            <input type="number" id="movie" value="0"><br>
+                            Shopping:<br>$
+                            <input type="number" id="shopping" value="0"><br><br>
+                        </form>
+                        <button onclick="Calculate()" class="w3-btn w3-white w3-border w3-border-blue w3-round-large">Calculate</button>
+                        <button onclick="ResetForm()" class="w3-btn w3-white w3-border w3-border-blue w3-round-large">Reset</button>
+                    </div>
+                </div>
+                <div id="formbox1">
+                    Your Budget
+                    <p id="budget"></p>
+                </div>
+            
+     </div>
+</div>
+<footer class="footer-distributed">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="./index.html">Home</a>
+                .
+                <a href="./Creditcard.html">Credit Cards</a>
+                .
+                <a href="./Budgeting.html">Budgeting</a>
+                .
+                <a href="./KiwiSaver.html">KiwiSaver</a>
+            </p>
+            <p class="footer-company-name">YWCA Auckland &copy; 2015</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>27 Gilles Ave</span> Newmarket, Auckland</p>
+            </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>(09) 522 8219</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:admin@akywca.org.nz">admin@akywca.org.nz</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                YWCA Auckland is a feminist organisation and part of a global movement of women leading change. 
+            </p>
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/akywca/"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/ywcaauckland?lang=en"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.instagram.com/ywcaauckland/"><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

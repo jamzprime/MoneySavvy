@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./css/cssFile.css">
+<link rel="stylesheet" type="text/css" href="./css/styleKiwisaver.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+<link rel="stylesheet" href="css/header-basic-light.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="KiwisaverCalculator.js"></script>
+
+<title>Money Savvy</title>
+
+</head>
+
+<header class="header-basic-light">
+
+	<div class="header-limiter">
+
+		<h1><a href="#">Money<span>Savvy</span></a></h1>
+
+		<nav>
+            <a href="./index.html">Home</a>
+            <a href="./Creditcard.html">Credit Cards</a>
+            <a href="./Budgeting.html">Budgeting</a>
+            <a href="./KiwiSaver.html"class="selected">KiwiSaver</a>
+		</nav>
+	</div>
+</header>
+
+<div class="body">      
+    <div class="video">
+        <iframe width="100%" height="500" src="https://www.youtube.com/embed/6HzrKVsok-k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <h2>What is Kiwisaver?</h2>
+    <p>Kiwisaver is a government organised savings programme which helps you to save up for your retirement. This savings are made up through a regular contribution from your salary. You get to choose from the available Kiwisaver schemes. There could be a little contribution from your employer too. There is also a contribution that happens annually from the government itself.</p> 
+    <br>
+    <h2>How does it work?</h2>
+    <p>A percentage of your pay is deducted at a rate of 3%, 4% or 8% and placed into your Kiwisaver account. This is done automatically so that you do not 'miss' the money</p>
+    <p>You get the money when you're 65 or when:</p>
+    <ul type="circle">
+        <li>Buying your first home</li>
+        <li>Moving overseas permanently</li>
+        <li>Suffering financial hardship</li>
+        <li>Seriously ill</li>
+    </ul>
+    <br>
+    <h2>The Benefits</h2>
+    <p>Kiwisaver is an easy way of saving for your future. You don't miss the money like you do with a normal savings account as it never enters your bank account. Your Kiwisaver account will also receive yearly contributions from the government at a maximum of $521.43. This is known as annual member tax credit.</p> 
+    <br><br>
+    <h2>Kiwisaver Calculator</h2>
+    <table>
+            <tr>
+                <td>Annual Income</td>
+                <td><input id = "expected_income" type="text"></td>
+            </tr>
+            <tr>
+                <td>Age to Start Input</td>
+                <td><input id= "contribute_year" type="text" > </td>
+            </tr>
+            <tr>
+                <td>Your Contribution </td>
+                <td><select id= "your_contribution" type="text"> 
+                    <option value="0.03" selected>3%</option>
+                    <option value="0.04">4%</option>
+                    <option value="0.08">8%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Your Fund Allocation </td>
+                <td><select id= "your_fund" type="text"> 
+                    <option value="0.03" selected>Conservative</option>
+                    <option value="0.042">Balance</option>
+                    <option value="0.048">Growth</option>
+                    </select>
+                </td>
+            </tr>
+            <tr><td><br> </td></tr>
+            <tr><td> </td></tr>
+            <tr>
+                <td><button type="button" class="w3-btn w3-white w3-border w3-border-blue w3-round-large" onclick="document.getElementById('calcuate_results1').innerHTML=kiwiCalculate(expected_income.value, contribute_year.value, your_contribution.value, your_fund.value)">Show Results</button></td>
+            </tr>
+            <tr><td><br> </td></tr>
+            <tr>
+                <td id="calcuate_results1"></td>
+            </tr>
+            
+        </table>
+</div>
+
+</div>
+    <br><br>
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <p class="footer-links">
+                <a href="./index.html">Home</a>
+                .
+                <a href="./Creditcard.html">Credit Cards</a>
+                .
+                <a href="./Budgeting.html">Budgeting</a>
+                .
+                <a href="./KiwiSaver.html">KiwiSaver</a>
+            </p>
+            <p class="footer-company-name">YWCA Auckland &copy; 2015</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>27 Gilles Ave</span> Newmarket, Auckland</p>
+            </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>(09) 522 8219</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:admin@akywca.org.nz">admin@akywca.org.nz</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                YWCA Auckland is a feminist organisation and part of a global movement of women leading change. 
+            </p>
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/akywca/"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/ywcaauckland?lang=en"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.instagram.com/ywcaauckland/"><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
